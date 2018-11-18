@@ -12,9 +12,8 @@ package knapsack;
 /**
  * @author irving09 <innoirvinge@gmail.com>
  */
-public class DPTopDown implements Knapsack {
-    @Override
-    public int solve(int[] weights, int[] values, int capacity) {
-        return 0;
-    }
+public interface Knapsack {
+
+    int solve(int[] weights, int[] values, int capacity);
+
 }

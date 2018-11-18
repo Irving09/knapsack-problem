@@ -12,5 +12,9 @@ package knapsack;
 /**
  * @author irving09 <innoirvinge@gmail.com>
  */
-public class BruteForce {
+public class BruteForce implements Knapsack {
+    @Override
+    public int solve(int[] weights, int[] values, int capacity) {
+        return 0;
+    }
 }
