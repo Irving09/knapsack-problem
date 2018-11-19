@@ -7,14 +7,19 @@
  * Date: Nov 18, 2018
  * Copyright 2018 innoirvinge@gmail.com
  */
-package knapsack;
+package knapsack.irving;
 
 /**
  * @author irving09 <innoirvinge@gmail.com>
  */
-public class DPTopDown implements Knapsack {
+public class BruteForce extends Knapsack {
+
+    public BruteForce(int[] weights, int[] values, int capacity) {
+        super(weights, values, capacity);
+    }
+
     @Override
-    public int solve(int[] weights, int[] values, int capacity) {
+    public int solve() {
         return 0;
     }
 }

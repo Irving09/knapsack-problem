@@ -1,7 +1,7 @@
-import knapsack.BruteForce;
-import knapsack.DPBottomUp;
-import knapsack.DPTopDown;
-import knapsack.Knapsack;
+import knapsack.irving.BruteForce;
+import knapsack.irving.DPBottomUp;
+import knapsack.irving.DPTopDown;
+import knapsack.irving.Knapsack;
 
 public class Main {
 

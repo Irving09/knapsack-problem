@@ -7,16 +7,21 @@
  * Date: Nov 18, 2018
  * Copyright 2018 innoirvinge@gmail.com
  */
-package knapsack;
+package knapsack.irving;
 
 import static java.lang.Math.max;
 
 /**
  * @author irving09 <innoirvinge@gmail.com>
  */
-public class DPBottomUp implements Knapsack {
+public class DPBottomUp extends Knapsack {
+
+    public DPBottomUp(int[] weights, int[] values, int capacity) {
+        super(weights, values, capacity);
+    }
+
     @Override
-    public int solve(int[] weights, int[] values, int capacity) {
+    public int solve() {
         int n = weights.length;
 
         int[][] dp = new int[n + 1][capacity + 1];
