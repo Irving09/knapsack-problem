@@ -7,9 +7,12 @@
  * Date: Nov 18, 2018
  * Copyright 2018 innoirvinge@gmail.com
  */
-package knapsack.irving;
+package knapsack;
 
 import static java.lang.Math.max;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author irving09 <innoirvinge@gmail.com>
@@ -67,7 +70,7 @@ public class DPBottomUp extends Knapsack {
 	}
 
 	@Override
-	public int solve() {
+	public List<Integer> solve() {
 		int n = weights.length;
 
 		int[][] dp = new int[n + 1][capacity + 1];
@@ -83,6 +86,11 @@ public class DPBottomUp extends Knapsack {
 				}
 			}
 		}
-		return dp[n][capacity];
+		int optimalValue = dp[n][capacity];
+		System.out.println(optimalValue);
+
+		// TODO back track not yet implemented
+
+		return new ArrayList<>();
 	}
 }

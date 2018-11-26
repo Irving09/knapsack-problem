@@ -7,7 +7,10 @@
  * Date: Nov 18, 2018
  * Copyright 2018 innoirvinge@gmail.com
  */
-package knapsack.irving;
+package knapsack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author irving09 <innoirvinge@gmail.com>
@@ -29,7 +32,7 @@ public class BruteForce extends Knapsack {
 		far.
 		This implementation involves developing a way to iterate through the subsets. You could
 		use an array of integers to indicate which elements are in your current subset, and cycling
-		through all subsets systematically. If you iterate through each subset by “incrementing”
+		through all subsets systematically. If you iterate through each subset by ï¿½incrementingï¿½
 		the number represented by the integer array, it may take up to O(n) bit flips in any one
 		increment, but on average, there will be a constant number of bit flips for a total of O(2^n
 		) work associated with the management of the subsets.
@@ -40,7 +43,7 @@ public class BruteForce extends Knapsack {
     
     
     @Override
-    public int solve() {
+    public List<Integer> solve() {
         int optimalValue = 0;
     	int tempTotalWeight = 0;
     	int tempTotalValue = 0;
@@ -62,6 +65,9 @@ public class BruteForce extends Knapsack {
         		optimalValue = tempTotalValue;
         	}        	       	
         }
+
+        System.out.println(optimalValue);
+        return new ArrayList<>();
         //int currentPowerOfTwo = Math.pow(2, n);
 //        int[][] subsets = new int[(int)Math.pow(2, n)][n];
 //    	int divider = 0;//(int) Math.pow(2, n-1);
@@ -127,7 +133,6 @@ public class BruteForce extends Knapsack {
 //        	}
 //        }
 //                        
-    	return optimalValue;
     }
     
     private void recursiveSubset(int[] subset, int startingLocation) {

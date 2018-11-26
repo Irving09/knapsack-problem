@@ -1,12 +1,9 @@
-import java.io.File;
-import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.Random;
+import knapsack.BruteForce;
+import knapsack.DPBottomUp;
+import knapsack.DPTopDown;
+import knapsack.Knapsack;
 
-import knapsack.irving.BruteForce;
-import knapsack.irving.DPBottomUp;
-import knapsack.irving.DPTopDown;
-import knapsack.irving.Knapsack;
+import java.util.Random;
 
 public class Main {
 
@@ -32,9 +29,9 @@ public class Main {
     	int[] testWeight = {3};
     	int testCapacity = 3;
     	
-    	Knapsack b = new BruteForce(testWeight,testVal, testCapacity);   	
+    	Knapsack b = new BruteForce(testWeight, testVal, testCapacity);
     	Knapsack bu = new DPBottomUp(testWeight,testVal, testCapacity);
-    	Knapsack td = new DPTopDown(testWeight,testVal, testCapacity);
+    	Knapsack td = new DPTopDown(testWeight, testVal, testCapacity);
     	
     	
     	System.out.println("--Tests for varying n size--");

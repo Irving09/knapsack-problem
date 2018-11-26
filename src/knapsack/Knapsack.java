@@ -7,7 +7,9 @@
  * Date: Nov 18, 2018
  * Copyright 2018 innoirvinge@gmail.com
  */
-package knapsack.irving;
+package knapsack;
+
+import java.util.List;
 
 /**
  * @author irving09 <innoirvinge@gmail.com>
@@ -24,6 +26,6 @@ public abstract class Knapsack {
         this.capacity = capacity;
     }
 
-    abstract int solve();
+    public abstract List<Integer> solve();
 
 }
