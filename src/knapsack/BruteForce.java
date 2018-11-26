@@ -20,7 +20,6 @@ public class BruteForce extends Knapsack {
     public BruteForce(int[] weights, int[] values, int capacity) {
         super(weights, values, capacity);
         solve();
-        //System.out.println(solve());
     }
 
     /*
@@ -50,100 +49,71 @@ public class BruteForce extends Knapsack {
         int n = this.values.length;
         int optimalSubset = 0;
         //test code
-        int total = 0;
-        for (int i = 0; i<Math.pow(2, n); i++) {
-        	tempTotalValue = 0;
-        	tempTotalWeight = 0;
-        	for(int j = 0; j < n;j++) {
-        		total++;
-        		if((i & (int)(Math.pow(2, j))) > 0) {
-            		tempTotalWeight += weights[j];
-            		tempTotalValue += values[j];
-        		}
-        	}
-        	if(tempTotalWeight <= capacity && tempTotalValue > optimalValue) {
-        		optimalValue = tempTotalValue;
-        	}        	       	
-        }
-
-        System.out.println(optimalValue);
-        return new ArrayList<>();
-        //int currentPowerOfTwo = Math.pow(2, n);
-//        int[][] subsets = new int[(int)Math.pow(2, n)][n];
-//    	int divider = 0;//(int) Math.pow(2, n-1);
-//    	int totalForDivide = 0;
-//    	double powerOfTwoToN = Math.pow(2, n);
-//        boolean isOne = false;
-//    	for(int i = 0; i < n; i++) {        	
-//        	divider = (int) Math.pow(2, n-i-1);
-//        	isOne = false;
-//        	totalForDivide = 0;
-//        	while(totalForDivide < powerOfTwoToN) {
-//        		for(int j = totalForDivide; j < totalForDivide +divider;j++) {
-//        			if(isOne) {
-//        				subsets[j][i]=1;
-//        			} else {
-//        				subsets[j][i]=0;
-//        			}
-//        		}
-//        		totalForDivide += divider;
-//        		isOne = !isOne;
-//        	}
-//        }
-//    	
-//    	total = 0;
-//    	optimalValue = 0;
-//    	for(int i = 0; i < Math.pow(2, n); i++) {
-//    		tempTotalValue = 0;
+//        for (int i = 0; i<Math.pow(2, n); i++) {
+//        	tempTotalValue = 0;
 //        	tempTotalWeight = 0;
 //        	for(int j = 0; j < n;j++) {
-//        		total++;
-//        		
-//        		if(subsets[i][j] == 1) {	
+//        		if((i & (int)(Math.pow(2, j))) > 0) {
 //            		tempTotalWeight += weights[j];
 //            		tempTotalValue += values[j];
 //        		}
 //        	}
 //        	if(tempTotalWeight <= capacity && tempTotalValue > optimalValue) {
 //        		optimalValue = tempTotalValue;
-//        	}
-//    	}
-//        int[][] subsets = generateSubsets();
-//        for(int i = 0; i < subsets.length; i++) { //IS WRONG FIX LATER
-//        	
-//        	int[] subsetIndexValues = subsets[i]; //REPRESENTS THE LOCATIONS OR INDEXES OF THE VALUES IN THE MAIN INT ARR
-//            
-//        	int tempTotalWeight = 0;
-//        	int tempTotalValue = 0;
-//        	//for each subset
-//        	int j = 0;
-//        	while(subsetIndexValues[j] > 0) {
-//        		tempTotalWeight += weights[subsetIndexValues[j]];
-//        		tempTotalValue += values[subsetIndexValues[j]];
-//        		j++;
-//        	}
-////        	for(int j = 0; j < subsetIndexValues.length; j++) {
-////        		tempTotalWeight += weights[subsetIndexValues[j]];
-////        		tempTotalValue += values[subsetIndexValues[j]];
-////            }
-//        	if(tempTotalWeight < capacity) {
-//        		if(tempTotalValue > optimalValue) {
-//        			optimalValue = tempTotalValue;
-//        		}
-//        	}
+//        	}        	       	
 //        }
-//                        
+//
+//        System.out.println(optimalValue);
+//        return new ArrayList<>();
+        int[][] subsets = generateSubsets(n);        
+    	optimalValue = 0;
+    	for(int i = 0; i < Math.pow(2, n); i++) {
+    		tempTotalValue = 0;
+        	tempTotalWeight = 0;
+        	for(int j = 0; j < n;j++) {      		    		
+        		if(subsets[i][j] == 1) {	
+            		tempTotalWeight += weights[j];
+            		tempTotalValue += values[j];
+        		}
+        	}
+        	if(tempTotalWeight <= capacity && tempTotalValue > optimalValue) {
+        		optimalValue = tempTotalValue;
+        		optimalSubset = i;
+        	}
+    	}
+    	//Create List to Return
+    	List<Integer> theOptimalSubsetList = new ArrayList<>();
+    	//Populate List
+    	for(int i = 0; i < n; i++) {
+    		if(subsets[optimalSubset][i] == 1) {
+        		theOptimalSubsetList.add(i);	
+    		}
+    	}
+    	//Return Results
+    	return theOptimalSubsetList;
     }
-    
-    private void recursiveSubset(int[] subset, int startingLocation) {
-    	
+    private int[][] generateSubsets(int n) {
+    	int[][] subsets = new int[(int) Math.pow(2, n)][values.length];
+        int divider = 0;
+    	int totalForDivide = 0;
+    	double powerOfTwoToN = Math.pow(2, n);
+        boolean isOne = false;
+    	for(int i = 0; i < n; i++) {        	
+        	divider = (int) Math.pow(2, n-i-1);
+        	isOne = false;
+        	totalForDivide = 0;
+        	while(totalForDivide < powerOfTwoToN) {
+        		for(int j = totalForDivide; j < totalForDivide +divider;j++) {
+        			if(isOne) {
+        				subsets[j][i]=1;
+        			} else {
+        				subsets[j][i]=0;
+        			}
+        		}
+        		totalForDivide += divider;
+        		isOne = !isOne;
+        	}
+        } 	
+    	return subsets;
     }
-//    private int[][] generateSubsets() {
-//    	int[][] subset = new int[values.length][values.length];
-//    	Arrays.fill(subset, -1);
-//    	
-//    	
-//    	
-//    	return subset;
-//    }
 }

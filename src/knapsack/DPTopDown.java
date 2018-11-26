@@ -22,6 +22,7 @@ public class DPTopDown extends Knapsack {
 
 	public DPTopDown(int[] weights, int[] values, int capacity) {
 		super(weights, values, capacity);
+		solve();
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class DPTopDown extends Knapsack {
 				dp[i][j] = -1;
 
 		int optimalValue = recurse(n, capacity, dp);
-		System.out.println("Optimal value:" + optimalValue);
+		//System.out.println("Optimal value:" + optimalValue);
 		return backtrack(dp);
 	}
 
