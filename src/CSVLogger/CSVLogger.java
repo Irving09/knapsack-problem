@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-import knapsack.Knapsack;
+import knapsack.parents.Knapsack;
 
 public class CSVLogger {
 

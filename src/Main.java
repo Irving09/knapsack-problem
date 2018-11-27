@@ -5,7 +5,7 @@ import CSVLogger.CSVLogger;
 import knapsack.BruteForce;
 import knapsack.DPBottomUp;
 import knapsack.DPTopDown;
-import knapsack.Knapsack;
+import knapsack.parents.Knapsack;
 
 public class Main {
 

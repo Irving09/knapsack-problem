@@ -9,22 +9,17 @@
  */
 package knapsack;
 
-import java.util.ArrayList;
+import knapsack.parents.KnapsackDP;
+
 import java.util.List;
 
 /**
  * @author irving09 <innoirvinge@gmail.com>
  */
-public class DPTopDown extends Knapsack {
+public class DPTopDown extends KnapsackDP {
 
 	public DPTopDown(int[] weights, int[] values, int capacity) {
 		super(weights, values, capacity);
-//		List<Integer> results = solve();
-//		Collections.sort(results);
-//		for(Integer num: results) {
-//        	System.out.print(num + ", ");
-//        }
-//        System.out.println();
 	}
 
 	/**
@@ -79,42 +74,5 @@ public class DPTopDown extends Knapsack {
 		// Return optimal solution between when item is included/not included
 		// fill in cache to prevent further recursions on same inputs
 		return cache[n][capacity] = Math.max(ignored, chosen);
-	}
-
-	/**
-	 * Backtracks the populated auxillary array dp to find items that were added to the knapsack
-	 * which also contributes to the overall optimal value.
-	 *
-	 * Reference: https://www.geeksforgeeks.org/printing-items-01-knapsack/
-	 *
-	 * @param dp Auxiliary array that stores the optimal value at cell dp[i][j].
-	 *           Variables i is the number of items and j is the capacity.
-	 * @return A list representing the indices of the choesn items which give optimal knapsack value.
-	 * */
-	private List<Integer> backtrack(int[][] dp) {
-		int row = values.length;
-		int col = capacity;
-
-		int optimalValue = dp[row][col];
-
-		List<Integer> result = new ArrayList<>();
-
-		while (row > 0 && optimalValue > 0) {
-			// optimal value did not include this item at dp[row][col]
-			if (optimalValue == dp[row - 1][col]) {
-				row--; // move to next item
-			} else {
-
-				// This item is included.
-				result.add(row - 1);
-
-				// Since this weight is included its
-				// value is deducted
-				optimalValue = optimalValue - values[row - 1];
-				col = col - weights[row - 1];
-			}
-		}
-
-		return result;
 	}
 }

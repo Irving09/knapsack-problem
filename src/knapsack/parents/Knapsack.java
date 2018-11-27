@@ -7,7 +7,7 @@
  * Date: Nov 18, 2018
  * Copyright 2018 innoirvinge@gmail.com
  */
-package knapsack;
+package knapsack.parents;
 
 import java.util.List;
 

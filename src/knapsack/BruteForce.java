@@ -9,6 +9,8 @@
  */
 package knapsack;
 
+import knapsack.parents.Knapsack;
+
 import java.util.ArrayList;
 import java.util.List;
 
