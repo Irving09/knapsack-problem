@@ -79,6 +79,8 @@ public class DPTopDown extends Knapsack {
 	 * Backtracks the populated auxillary array dp to find items that were added to the knapsack
 	 * which also contributes to the overall optimal value.
 	 *
+	 * Reference: https://www.geeksforgeeks.org/printing-items-01-knapsack/
+	 *
 	 * @param dp Auxiliary array that stores the optimal value at cell dp[i][j].
 	 *           Variables i is the number of items and j is the capacity.
 	 * @return A list representing the indices of the choesn items which give optimal knapsack value.
