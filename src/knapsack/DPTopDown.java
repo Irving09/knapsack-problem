@@ -21,6 +21,11 @@ public class DPTopDown extends Knapsack {
 		super(weights, values, capacity);
 	}
 
+	/**
+	 * Computes the optimal list of items for the knapsack problem.
+	 *
+	 * @return A list representing the indices of the choesn items which give optimal knapsack value
+	 * */
 	@Override
 	public List<Integer> solve() {
 		int n = weights.length;
@@ -33,6 +38,18 @@ public class DPTopDown extends Knapsack {
 		return backtrack(dp);
 	}
 
+	/**
+	 * Recurses through the item of choices to be placed in the knapsack.
+	 * Each layer of the recursion stack has two options
+	 * 		- include the item
+	 * 		- do not include the item
+	 *
+	 * @param n Remaining number of items in the knapsack.
+	 * @param capacity Remaining capacity in the knapsack.
+	 * @param cache Auxiliary array that stores the optimal value at cell dp[i][j].
+	 *              Variables i is the number of items and j is the capacity.
+	 * @return The optimal value in the knapsack
+	 * */
 	private int recurse(int n, int capacity, int[][] cache) {
 		int item  = n - 1;
 
@@ -58,6 +75,14 @@ public class DPTopDown extends Knapsack {
 		return cache[n][capacity] = Math.max(ignored, chosen);
 	}
 
+	/**
+	 * Backtracks the populated auxillary array dp to find items that were added to the knapsack
+	 * which also contributes to the overall optimal value.
+	 *
+	 * @param dp Auxiliary array that stores the optimal value at cell dp[i][j].
+	 *           Variables i is the number of items and j is the capacity.
+	 * @return A list representing the indices of the choesn items which give optimal knapsack value.
+	 * */
 	private List<Integer> backtrack(int[][] dp) {
 		int row = values.length;
 		int col = capacity;
