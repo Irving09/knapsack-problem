@@ -10,10 +10,7 @@
 package knapsack;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author irving09 <innoirvinge@gmail.com>
@@ -22,32 +19,24 @@ public class DPTopDown extends Knapsack {
 
 	public DPTopDown(int[] weights, int[] values, int capacity) {
 		super(weights, values, capacity);
-		solve();
 	}
 
 	@Override
 	public List<Integer> solve() {
-		// Defines the size of the value and weight integer array for use in the
-		// auxiliary array.
 		int n = weights.length;
-
-		// Create the auxiliary array with the size of (n+1)x(capacity+1)
 		int[][] dp = new int[n + 1][capacity + 1];
-
-		// 0 value for first row and column which represents no capacity and no items
 		for (int i = 1, rowLen = dp.length; i < rowLen; i++)
 			for (int j = 1, colLen = dp[i].length; j < colLen; j++)
 				dp[i][j] = -1;
 
-		int optimalValue = recurse(n, capacity, dp);
-		//System.out.println("Optimal value:" + optimalValue);
+		recurse(n, capacity, dp);
 		return backtrack(dp);
 	}
 
 	private int recurse(int n, int capacity, int[][] cache) {
 		int item  = n - 1;
 
-		// No need to recurse the sub problem has already been solved before
+		// No need to recurse the sub problem that has already been solved before
 		if (cache[n][capacity] != -1) {
 			return cache[n][capacity];
 		}
@@ -64,25 +53,34 @@ public class DPTopDown extends Knapsack {
 			chosen = cache[item][leftOverCapacity] + values[item];
 		}
 
-		// Return optimal solution as well as filling in the cache
-		// to prevent further recursions on same inputs
+		// Return optimal solution between when item is included/not included
+		// fill in cache to prevent further recursions on same inputs
 		return cache[n][capacity] = Math.max(ignored, chosen);
 	}
 
 	private List<Integer> backtrack(int[][] dp) {
-		int rows = dp.length, cols = dp[0].length;
-		int row = rows - 1, col = cols - 1;
+		int row = values.length;
+		int col = capacity;
 
-		List<Integer> result = new ArrayList<>(rows - 1);
-		// TODO Not yet implemented
-		//    while (row > 0 && col > 0) {
-		//      while (dp[row][col] == -1) {
-		//        col--;
-		//      }
-		//
-		//      result.add(row - 1);
-		//      row--;
-		//    }
+		int optimalValue = dp[row][col];
+
+		List<Integer> result = new ArrayList<>();
+
+		while (row > 0 && optimalValue > 0) {
+			// optimal value did not include this item at dp[row][col]
+			if (optimalValue == dp[row - 1][col]) {
+				row--; // move to next item
+			} else {
+
+				// This item is included.
+				result.add(row - 1);
+
+				// Since this weight is included its
+				// value is deducted
+				optimalValue = optimalValue - values[row - 1];
+				col = col - weights[row - 1];
+			}
+		}
 
 		return result;
 	}
