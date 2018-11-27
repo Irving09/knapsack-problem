@@ -72,33 +72,8 @@ public class DPBottomUp extends KnapsackDP {
 				}
 			}
 		}
-		//return the final cell, as it will have the optimal value for the knapsac problem.
+
 		return backtrack(dp);
 	}
-
-//	@Override
-//	public List<Integer> solve() {
-//		int n = weights.length;
-//
-//		int[][] dp = new int[n + 1][capacity + 1];
-//		for (int i = 1; i < n; i++) {
-//			for (int j = 0; j < capacity; j++) {
-//				if (weights[i] > j) {
-//					dp[i][j] = dp[i - 1][j];
-//				} else {
-//					int included = dp[i - 1][j - weights[i]] + values[i];
-//					int notIncluded = dp[i - 1][j];
-//
-//					dp[i][j] = max(notIncluded, included);
-//				}
-//			}
-//		}
-//		int optimalValue = dp[n][capacity];
-//		//System.out.println(optimalValue);
-//
-//		// TODO back track not yet implemented
-//
-//		return new ArrayList<>();
-//	}
 
 }
