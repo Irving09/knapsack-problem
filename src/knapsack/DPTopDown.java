@@ -19,6 +19,12 @@ public class DPTopDown extends Knapsack {
 
 	public DPTopDown(int[] weights, int[] values, int capacity) {
 		super(weights, values, capacity);
+//		List<Integer> results = solve();
+//		Collections.sort(results);
+//		for(Integer num: results) {
+//        	System.out.print(num + ", ");
+//        }
+//        System.out.println();
 	}
 
 	/**

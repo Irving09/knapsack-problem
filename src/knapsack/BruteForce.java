@@ -19,28 +19,19 @@ public class BruteForce extends Knapsack {
 
     public BruteForce(int[] weights, int[] values, int capacity) {
         super(weights, values, capacity);
-        solve();
+//        List<Integer> results = solve();
+//        Collections.sort(results);
+//        for(Integer num: results) {
+//        	System.out.print(num + ", ");
+//        }
+//        System.out.println();
     }
 
-    /*
-     * 
-     * This is the brute force algorithm. You need to consider each of the 2^n
-		subsets of the n items and for each subset, check to see whether the items fit into the
-		knapsack (capacity W), and if they do fit, calculate how much total value the subset has
-		and whether it is greater than the maximum valued subset that the algorithm has seen so
-		far.
-		This implementation involves developing a way to iterate through the subsets. You could
-		use an array of integers to indicate which elements are in your current subset, and cycling
-		through all subsets systematically. If you iterate through each subset by �incrementing�
-		the number represented by the integer array, it may take up to O(n) bit flips in any one
-		increment, but on average, there will be a constant number of bit flips for a total of O(2^n
-		) work associated with the management of the subsets.
-		Determining whether the subset of items fits into the knapsack and (if it does) what its
-		total value is should take O(n) time.
-     * 
-     */
-    
-    
+    /**
+	 * Computes the optimal list of items for the knapsack problem.
+	 *
+	 * @return A list representing the indices of the chosen items which give the optimal knapsack value
+	 * */
     @Override
     public List<Integer> solve() {
         int optimalValue = 0;
@@ -92,6 +83,7 @@ public class BruteForce extends Knapsack {
     	//Return Results
     	return theOptimalSubsetList;
     }
+    
     private int[][] generateSubsets(int n) {
     	int[][] subsets = new int[(int) Math.pow(2, n)][values.length];
         int divider = 0;
