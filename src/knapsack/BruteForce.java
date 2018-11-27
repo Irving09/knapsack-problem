@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * @author irving09 <innoirvinge@gmail.com>
+ * @author Joshua Meigs <joshua.meigs@gmail.com>
  */
 public class BruteForce extends Knapsack {
 

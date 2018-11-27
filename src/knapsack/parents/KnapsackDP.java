@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * @author irving09 <innoirvinge@gmail.com>
+ * @author Joshua Meigs <joshua.meigs@gmail.com>
  */
 public abstract class KnapsackDP extends Knapsack implements Backtrack {
 
@@ -24,14 +25,14 @@ public abstract class KnapsackDP extends Knapsack implements Backtrack {
     }
 
     /**
-     * Backtracks the populated auxillary array dp to find items that were added to the knapsack
+     * Backtracks the populated auxiliary array dp to find items that were added to the knapsack
      * which also contributes to the overall optimal value.
      *
      * Reference: https://www.geeksforgeeks.org/printing-items-01-knapsack/
      *
      * @param dp Auxiliary array that stores the optimal value at cell dp[i][j].
      *           Variables i is the number of items and j is the capacity.
-     * @return A list representing the indices of the choesn items which give optimal knapsack value.
+     * @return A list representing the indices of the chosen items which give optimal knapsack value.
      * */
     @Override
     public List<Integer> backtrack(int[][] dp) {
