@@ -45,9 +45,9 @@ public class PerformanceTests {
                 Knapsack bottomUp = new DPBottomUp(weights, values, capacity);
                 Knapsack topdown = new DPTopDown(weights, values, capacity);
 
-                logger.logRuntime(bruteForce, testCase.n(), capacity, false);
-                logger.logRuntime(bottomUp, testCase.n(), capacity, false);
-                logger.logRuntime(topdown, testCase.n(), capacity, false);
+                logger.logRuntime(bruteForce, testCase.n());
+                logger.logRuntime(bottomUp, testCase.n());
+                logger.logRuntime(topdown, testCase.n());
 
                 logger.writeNewLineToFile();
             }
@@ -66,9 +66,9 @@ public class PerformanceTests {
                 Knapsack bottomUp = new DPBottomUp(weights, values, capacity);
                 Knapsack topdown = new DPTopDown(weights, values, capacity);
 
-                logger.logRuntime(bruteForce, testCase.n(), capacity, true);
-                logger.logRuntime(bottomUp, testCase.n(), capacity, true);
-                logger.logRuntime(topdown, testCase.n(), capacity, true);
+                logger.logRuntime(bruteForce, testCase.capacity());
+                logger.logRuntime(bottomUp, testCase.capacity());
+                logger.logRuntime(topdown, testCase.capacity());
 
                 logger.writeNewLineToFile();
             }

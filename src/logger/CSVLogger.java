@@ -22,18 +22,16 @@ public class CSVLogger {
 	/**
 	 * Writes the given x value(the size of the current n or the capacity depending on the constant factor) and Y-Value(Runtime) that will be written to the file
 	 * for graph representation of the data.
-	 * 
+	 *
 	 * @param knapsack The Type of Approach that was taken to solve the knapsack problem.
-	 * @param nSize The size of the current N value
-	 * @param capacitySize The current size of the capacity W
-	 * @param constantFactorIsN true if the variable that is being changed for testing is the capacity, false otherwise.
+	 * @param value The value to log, in this case it is either capacity or the number of items
 	 */
-	public void logRuntime(Knapsack knapsack, int nSize, int capacitySize, boolean constantFactorIsN) {
+	public void logRuntime(Knapsack knapsack, int value) {
 		long startTime = System.nanoTime();
 		knapsack.solve();
 		long endTime = System.nanoTime();
 		long runtime = endTime - startTime;
-		writeToFileDifCol(constantFactorIsN?capacitySize:nSize ,runtime);
+		writeToFileDifCol(value, runtime);
 	}
 
 	/**
