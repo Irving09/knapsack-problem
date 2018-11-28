@@ -60,7 +60,7 @@ public class PerformanceTests {
 
         for (TestSet testSet : testsWithConstantItems()) {
             logger.writeHeader(testSet.itemsSize(), testSet.capacity(), true);
-            testSet.testCases().sort(Comparator.comparingInt(TestCase::n));
+            testSet.testCases().sort(Comparator.comparingInt(TestCase::capacity));
 
             for (TestCase testCase : testSet.testCases()) {
                 int[] weights = testCase.weights();
