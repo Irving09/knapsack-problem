@@ -24,7 +24,7 @@ public class TestSetGenerator {
     private static final int VALUE_LIMIT = 1000;
     private static final int WEIGHT_LIMIT = 1000;
 
-    public static List<TestSet> sampleTestSets() {
+    public static List<TestSet> testsWithConstantCapacity() {
         final int numberOfTestCases = 10;
 
         return Arrays.asList(
@@ -37,13 +37,20 @@ public class TestSetGenerator {
             generateTestSetConstantCapacity(numberOfTestCases, 128),
             generateTestSetConstantCapacity(numberOfTestCases, 256),
             generateTestSetConstantCapacity(numberOfTestCases, 512),
-            generateTestSetConstantCapacity(numberOfTestCases, WEIGHT_LIMIT),
-            generateTestSetConstantItemSize(numberOfTestCases, 2),
-            generateTestSetConstantItemSize(numberOfTestCases, 4),
-            generateTestSetConstantItemSize(numberOfTestCases, 8),
-            generateTestSetConstantItemSize(numberOfTestCases, 16),
-            generateTestSetConstantItemSize(numberOfTestCases, 32),
-            generateTestSetConstantItemSize(numberOfTestCases, MAX_ITEMS_FOR_BRUTE_FORCE)
+            generateTestSetConstantCapacity(numberOfTestCases, WEIGHT_LIMIT)
+        );
+    }
+
+    public static List<TestSet> testsWithConstantItems() {
+        final int numberOfTestCases = 10;
+
+        return Arrays.asList(
+                generateTestSetConstantItemSize(numberOfTestCases, 2),
+                generateTestSetConstantItemSize(numberOfTestCases, 4),
+                generateTestSetConstantItemSize(numberOfTestCases, 8),
+                generateTestSetConstantItemSize(numberOfTestCases, 16),
+                generateTestSetConstantItemSize(numberOfTestCases, 32),
+                generateTestSetConstantItemSize(numberOfTestCases, MAX_ITEMS_FOR_BRUTE_FORCE)
 //          generateTestSetConstantItemSize(numberOfTestCases, 64),
 //          generateTestSetConstantItemSize(numberOfTestCases, 128),
 //          generateTestSetConstantItemSize(numberOfTestCases, 256),

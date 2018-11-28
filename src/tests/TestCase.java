@@ -36,6 +36,10 @@ public class TestCase {
         return values;
     }
 
+    public int n() {
+        return weights.length;
+    }
+
     public static TestCaseBuilder builder() {
         return new TestCaseBuilder();
     }
