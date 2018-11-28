@@ -35,8 +35,8 @@ public class PerformanceTests {
         logger.openFile();
 
         for (TestSet testSet : testsWithConstantCapacity()) {
+            logger.writeHeader(testSet.itemsSize(), testSet.capacity(), false);
             for (TestCase testCase : testSet.testCases()) {
-                logger.writeHeader(testCase.n(), testCase.capacity(), false);
                 int[] weights = testCase.weights();
                 int[] values = testCase.values();
                 int capacity = testCase.capacity();
@@ -48,14 +48,16 @@ public class PerformanceTests {
                 logger.logRuntime(bruteForce, testCase.n(), capacity, false);
                 logger.logRuntime(bottomUp, testCase.n(), capacity, false);
                 logger.logRuntime(topdown, testCase.n(), capacity, false);
+
+                logger.writeNewLineToFile();
             }
             logger.writeNewLineToFile();
             logger.writeNewLineToFile();
         }
 
         for (TestSet testSet : testsWithConstantItems()) {
+            logger.writeHeader(testSet.itemsSize(), testSet.capacity(), true);
             for (TestCase testCase : testSet.testCases()) {
-                logger.writeHeader(testCase.n(), testCase.capacity(), true);
                 int[] weights = testCase.weights();
                 int[] values = testCase.values();
                 int capacity = testCase.capacity();
@@ -67,6 +69,8 @@ public class PerformanceTests {
                 logger.logRuntime(bruteForce, testCase.n(), capacity, true);
                 logger.logRuntime(bottomUp, testCase.n(), capacity, true);
                 logger.logRuntime(topdown, testCase.n(), capacity, true);
+
+                logger.writeNewLineToFile();
             }
             logger.writeNewLineToFile();
             logger.writeNewLineToFile();

@@ -67,7 +67,7 @@ public class TestSetGenerator {
             testCases.add(generateTestCase(itemSize, capacity));
         }
 
-        return new TestSet(testCases);
+        return new TestSet(testCases, 0, capacity);
     }
 
     public static TestSet generateTestSetConstantItemSize(int numTestCases, int itemSize) {
@@ -79,7 +79,7 @@ public class TestSetGenerator {
             testCases.add(generateTestCase(itemSize, capacity));
         }
 
-        return new TestSet(testCases);
+        return new TestSet(testCases, itemSize, 0);
     }
 
     public static TestCase generateTestCase(int itemSize, int capacity) {
