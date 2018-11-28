@@ -7,33 +7,37 @@
  * Date: Nov 27, 2018
  * Copyright 2018 innoirvinge@gmail.com
  */
-package tests;
+package tests.performance;
 
 import knapsack.parents.Knapsack;
 import logger.CSVLogger;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Comparator;
 
-import static tests.TestSetGenerator.testsWithConstantCapacity;
-import static tests.TestSetGenerator.testsWithConstantItems;
+import static tests.performance.TestSetGenerator.testsWithConstantCapacity;
+import static tests.performance.TestSetGenerator.testsWithConstantItems;
 
 /**
  * @author irving09 <innoirvinge@gmail.com>
  */
-public class PerformanceTests {
+public class PerformanceTestRunner {
 
     private CSVLogger logger;
 
-    public PerformanceTests(CSVLogger logger) {
+    public PerformanceTestRunner(CSVLogger logger) {
         this.logger = logger;
     }
 
-    public void run(Knapsack[] algorithms) throws FileNotFoundException {
-        logger.openFile();
-
+    public void run(Knapsack[] algorithms) throws IOException {
         for (TestSet testSet : testsWithConstantCapacity()) {
-            logger.writeHeader(testSet.itemsSize(), testSet.capacity(), false);
+            int itemSize = testSet.itemsSize();
+            int capacity = testSet.capacity();
+            String fullPath = logger.generateFileNameBy(itemSize, capacity);
+            logger.openFile(fullPath);
+            logger.writeHeader(itemSize, capacity, false);
+
             testSet.testCases().sort(Comparator.comparingInt(TestCase::n));
 
             for (TestCase testCase : testSet.testCases()) {
@@ -47,12 +51,17 @@ public class PerformanceTests {
 
                 logger.writeNewLineToFile();
             }
-            logger.writeNewLineToFile();
-            logger.writeNewLineToFile();
+
+            logger.closeFile();
         }
 
         for (TestSet testSet : testsWithConstantItems()) {
-            logger.writeHeader(testSet.itemsSize(), testSet.capacity(), true);
+            int itemSize = testSet.itemsSize();
+            int capacity = testSet.capacity();
+            String fullPath = logger.generateFileNameBy(itemSize, capacity);
+            logger.openFile(fullPath);
+            logger.writeHeader(itemSize, capacity, true);
+
             testSet.testCases().sort(Comparator.comparingInt(TestCase::capacity));
 
             for (TestCase testCase : testSet.testCases()) {
@@ -66,11 +75,9 @@ public class PerformanceTests {
 
                 logger.writeNewLineToFile();
             }
-            logger.writeNewLineToFile();
-            logger.writeNewLineToFile();
-        }
 
-        logger.closeFile();
+            logger.closeFile();
+        }
     }
 
 }

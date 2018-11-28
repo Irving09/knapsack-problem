@@ -7,7 +7,7 @@
  * Date: Nov 26, 2018
  * Copyright 2018 innoirvinge@gmail.com
  */
-package tests;
+package tests.unit;
 
 import knapsack.BruteForce;
 import knapsack.DPBottomUp;

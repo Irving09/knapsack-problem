@@ -3,16 +3,16 @@ import knapsack.DPBottomUp;
 import knapsack.DPTopDown;
 import knapsack.parents.Knapsack;
 import logger.CSVLogger;
-import tests.PerformanceTests;
+import tests.performance.PerformanceTestRunner;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
 
     	CSVLogger logger = new CSVLogger();
-		PerformanceTests runner = new PerformanceTests(logger);
+		PerformanceTestRunner runner = new PerformanceTestRunner(logger);
 
 		Knapsack[] algorithmsToTest = {
 			new BruteForce(),

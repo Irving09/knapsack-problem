@@ -7,7 +7,7 @@
  * Date: Nov 27, 2018
  * Copyright 2018 innoirvinge@gmail.com
  */
-package tests;
+package tests.performance;
 
 /**
  * @author irving09 <innoirvinge@gmail.com>

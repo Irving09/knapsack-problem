@@ -2,6 +2,7 @@ package logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import knapsack.parents.Knapsack;
@@ -62,6 +63,24 @@ public class CSVLogger {
 	 */
 	public void openFile() throws FileNotFoundException {
 		p = new PrintWriter(new File("output.csv"));
+	}
+	/**
+	 * Opens the output file for writing the results of the tests
+	 * @throws FileNotFoundException if the File cannot be found.z
+	 */
+	public void openFile(String fullPath) throws IOException {
+		File f = new File(fullPath);
+		f.getParentFile().mkdirs();
+		f.createNewFile();
+
+		p = new PrintWriter(f);
+	}
+
+	public String generateFileNameBy(int itemsSize, int capacity) {
+		boolean itemsSizeIsConstant = itemsSize > 0;
+		String prefix = itemsSizeIsConstant ? "n" : "capacity";
+		int value = itemsSizeIsConstant ? itemsSize : capacity;
+		return "./data/" + prefix + "_" + value;
 	}
 	/**
 	 * Closes the file that was opened for output
