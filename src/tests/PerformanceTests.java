@@ -16,6 +16,7 @@ import knapsack.parents.Knapsack;
 import logger.CSVLogger;
 
 import java.io.FileNotFoundException;
+import java.util.Comparator;
 
 import static tests.TestSetGenerator.testsWithConstantCapacity;
 import static tests.TestSetGenerator.testsWithConstantItems;
@@ -36,6 +37,8 @@ public class PerformanceTests {
 
         for (TestSet testSet : testsWithConstantCapacity()) {
             logger.writeHeader(testSet.itemsSize(), testSet.capacity(), false);
+            testSet.testCases().sort(Comparator.comparingInt(TestCase::n));
+
             for (TestCase testCase : testSet.testCases()) {
                 int[] weights = testCase.weights();
                 int[] values = testCase.values();
@@ -57,6 +60,8 @@ public class PerformanceTests {
 
         for (TestSet testSet : testsWithConstantItems()) {
             logger.writeHeader(testSet.itemsSize(), testSet.capacity(), true);
+            testSet.testCases().sort(Comparator.comparingInt(TestCase::n));
+
             for (TestCase testCase : testSet.testCases()) {
                 int[] weights = testCase.weights();
                 int[] values = testCase.values();
