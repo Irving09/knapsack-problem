@@ -50,6 +50,7 @@ public class PerformanceTests {
                 logger.logRuntime(topdown, testCase.n(), capacity, false);
             }
             logger.writeNewLineToFile();
+            logger.writeNewLineToFile();
         }
 
         for (TestSet testSet : testsWithConstantItems()) {
@@ -67,6 +68,8 @@ public class PerformanceTests {
                 logger.logRuntime(bottomUp, testCase.n(), capacity, true);
                 logger.logRuntime(topdown, testCase.n(), capacity, true);
             }
+            logger.writeNewLineToFile();
+            logger.writeNewLineToFile();
         }
 
         logger.closeFile();

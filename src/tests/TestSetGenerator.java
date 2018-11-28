@@ -20,7 +20,7 @@ import static java.util.concurrent.ThreadLocalRandom.current;
  */
 public class TestSetGenerator {
 
-    private static final int MAX_ITEMS_FOR_BRUTE_FORCE = 50;
+    private static final int MAX_ITEMS_FOR_BRUTE_FORCE = 20;
     private static final int VALUE_LIMIT = 1000;
     private static final int WEIGHT_LIMIT = 1000;
 
@@ -49,8 +49,8 @@ public class TestSetGenerator {
                 generateTestSetConstantItemSize(numberOfTestCases, 4),
                 generateTestSetConstantItemSize(numberOfTestCases, 8),
                 generateTestSetConstantItemSize(numberOfTestCases, 16),
-                generateTestSetConstantItemSize(numberOfTestCases, 32),
                 generateTestSetConstantItemSize(numberOfTestCases, MAX_ITEMS_FOR_BRUTE_FORCE)
+//                generateTestSetConstantItemSize(numberOfTestCases, 32),
 //          generateTestSetConstantItemSize(numberOfTestCases, 64),
 //          generateTestSetConstantItemSize(numberOfTestCases, 128),
 //          generateTestSetConstantItemSize(numberOfTestCases, 256),
