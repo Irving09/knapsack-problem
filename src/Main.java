@@ -1,3 +1,7 @@
+import knapsack.BruteForce;
+import knapsack.DPBottomUp;
+import knapsack.DPTopDown;
+import knapsack.parents.Knapsack;
 import logger.CSVLogger;
 import tests.PerformanceTests;
 
@@ -10,7 +14,13 @@ public class Main {
     	CSVLogger logger = new CSVLogger();
 		PerformanceTests runner = new PerformanceTests(logger);
 
-		runner.run();
+		Knapsack[] algorithmsToTest = {
+			new BruteForce(),
+			new DPTopDown(),
+			new DPBottomUp()
+		};
+
+		runner.run(algorithmsToTest);
 	}
     
 }

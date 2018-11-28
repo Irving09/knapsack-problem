@@ -25,7 +25,7 @@ public class TestSetGenerator {
     private static final int WEIGHT_LIMIT = 1000;
 
     public static List<TestSet> testsWithConstantCapacity() {
-        final int numberOfTestCases = 10;
+        final int numberOfTestCases = 100;
 
         return Arrays.asList(
             generateTestSetConstantCapacity(numberOfTestCases, 2),

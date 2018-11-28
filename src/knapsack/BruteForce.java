@@ -20,6 +20,10 @@ import java.util.List;
  */
 public class BruteForce extends Knapsack {
 
+	public BruteForce() {
+		super();
+	}
+
     public BruteForce(int[] weights, int[] values, int capacity) {
         super(weights, values, capacity);
 //        List<Integer> results = solve();

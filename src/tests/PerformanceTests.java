@@ -9,9 +9,6 @@
  */
 package tests;
 
-import knapsack.BruteForce;
-import knapsack.DPBottomUp;
-import knapsack.DPTopDown;
 import knapsack.parents.Knapsack;
 import logger.CSVLogger;
 
@@ -32,7 +29,7 @@ public class PerformanceTests {
         this.logger = logger;
     }
 
-    public void run() throws FileNotFoundException {
+    public void run(Knapsack[] algorithms) throws FileNotFoundException {
         logger.openFile();
 
         for (TestSet testSet : testsWithConstantCapacity()) {
@@ -40,17 +37,13 @@ public class PerformanceTests {
             testSet.testCases().sort(Comparator.comparingInt(TestCase::n));
 
             for (TestCase testCase : testSet.testCases()) {
-                int[] weights = testCase.weights();
-                int[] values = testCase.values();
-                int capacity = testCase.capacity();
+                for (Knapsack algorithm : algorithms) {
+                    algorithm.weights(testCase.weights());
+                    algorithm.values(testCase.values());
+                    algorithm.capacity(testCase.capacity());
 
-                Knapsack bruteForce = new BruteForce(weights, values, capacity);
-                Knapsack bottomUp = new DPBottomUp(weights, values, capacity);
-                Knapsack topdown = new DPTopDown(weights, values, capacity);
-
-                logger.logRuntime(bruteForce, testCase.n());
-                logger.logRuntime(bottomUp, testCase.n());
-                logger.logRuntime(topdown, testCase.n());
+                    logger.logRuntime(algorithm, testCase.n());
+                }
 
                 logger.writeNewLineToFile();
             }
@@ -63,17 +56,13 @@ public class PerformanceTests {
             testSet.testCases().sort(Comparator.comparingInt(TestCase::capacity));
 
             for (TestCase testCase : testSet.testCases()) {
-                int[] weights = testCase.weights();
-                int[] values = testCase.values();
-                int capacity = testCase.capacity();
+                for (Knapsack algorithm : algorithms) {
+                    algorithm.weights(testCase.weights());
+                    algorithm.values(testCase.values());
+                    algorithm.capacity(testCase.capacity());
 
-                Knapsack bruteForce = new BruteForce(weights, values, capacity);
-                Knapsack bottomUp = new DPBottomUp(weights, values, capacity);
-                Knapsack topdown = new DPTopDown(weights, values, capacity);
-
-                logger.logRuntime(bruteForce, testCase.capacity());
-                logger.logRuntime(bottomUp, testCase.capacity());
-                logger.logRuntime(topdown, testCase.capacity());
+                    logger.logRuntime(algorithm, testCase.capacity());
+                }
 
                 logger.writeNewLineToFile();
             }

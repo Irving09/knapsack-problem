@@ -19,6 +19,10 @@ import java.util.List;
  */
 public class DPTopDown extends KnapsackDP {
 
+	public DPTopDown() {
+		super();
+	}
+
 	public DPTopDown(int[] weights, int[] values, int capacity) {
 		super(weights, values, capacity);
 	}

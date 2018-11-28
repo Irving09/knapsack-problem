@@ -20,6 +20,10 @@ import java.util.List;
  */
 public abstract class KnapsackDP extends Knapsack implements Backtrack {
 
+    protected KnapsackDP() {
+        super();
+    }
+
     protected KnapsackDP(int[] weights, int[] values, int capacity) {
         super(weights, values, capacity);
     }

@@ -21,6 +21,10 @@ import static java.lang.Math.max;
  */
 public class DPBottomUp extends KnapsackDP {
 
+	public DPBottomUp() {
+		super();
+	}
+
 	public DPBottomUp(int[] weights, int[] values, int capacity) {
 		super(weights, values, capacity);
 	}
