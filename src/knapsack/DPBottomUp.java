@@ -17,17 +17,12 @@ import static java.lang.Math.max;
 
 /**
  * @author irving09 <innoirvinge@gmail.com>
+ * @author Joshua Meigs <joshua.meigs@gmail.com>
  */
 public class DPBottomUp extends KnapsackDP {
 
 	public DPBottomUp(int[] weights, int[] values, int capacity) {
 		super(weights, values, capacity);
-//		List<Integer> results = solver_josh();
-//		Collections.sort(results);
-//		for(Integer num: results) {
-//        	System.out.print(num + ", ");
-//        }
-//        System.out.println();
 	}
 
 	/***
@@ -56,7 +51,7 @@ public class DPBottomUp extends KnapsackDP {
 		//The outer for loop that will loop through each row starting from 1 to n
 		for (int i = 1; i <= n; i++) {
 			//The inner for loop that will loop through an incrementing capacity starting from 1 to the overall capacity of
-			//the knapsac.
+			//the knapsack.
 			for (int j = 1; j <= capacity; j++) {
 				currentItemValue = values[(i-1)]; //Represents the current items value, due to indexing it is at i-1
 				currentItemWeight = weights[(i-1)];//Represents the current items weight, due to indexing it is at i-1
