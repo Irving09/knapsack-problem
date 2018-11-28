@@ -14,9 +14,9 @@ package tests;
  */
 public class TestCase {
 
-    protected int[] weights;
-    protected int[] values;
-    protected int capacity;
+    private int[] weights;
+    private int[] values;
+    private int capacity;
 
     public TestCase(int[] weights, int[] values, int capacity) {
         this.weights = weights;

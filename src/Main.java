@@ -1,7 +1,7 @@
 import java.io.FileNotFoundException;
 import java.util.Random;
 
-import CSVLogger.CSVLogger;
+import logger.CSVLogger;
 import knapsack.BruteForce;
 import knapsack.DPBottomUp;
 import knapsack.DPTopDown;
