@@ -39,8 +39,6 @@ public class TestSetGenerator {
             testSets.add(generateTestSetConstantItemSize(NUM_TEST_CASES_PER_BATCH, itemSize));
         }
 
-        // TODO figure out capacity loop
-
         return testSets;
     }
 
