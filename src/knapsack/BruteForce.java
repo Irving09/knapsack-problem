@@ -26,12 +26,7 @@ public class BruteForce extends Knapsack {
 
     public BruteForce(int[] weights, int[] values, int capacity) {
         super(weights, values, capacity);
-//        List<Integer> results = solve();
-//        Collections.sort(results);
-//        for(Integer num: results) {
-//        	System.out.print(num + ", ");
-//        }
-//        System.out.println();
+
     }
 
     /**
@@ -45,75 +40,36 @@ public class BruteForce extends Knapsack {
     	int tempTotalWeight = 0;
     	int tempTotalValue = 0;
         int n = this.values.length;
-        int optimalSubset = 0;
-        //test code
-//        for (int i = 0; i<Math.pow(2, n); i++) {
-//        	tempTotalValue = 0;
-//        	tempTotalWeight = 0;
-//        	for(int j = 0; j < n;j++) {
-//        		if((i & (int)(Math.pow(2, j))) > 0) {
-//            		tempTotalWeight += weights[j];
-//            		tempTotalValue += values[j];
-//        		}
-//        	}
-//        	if(tempTotalWeight <= capacity && tempTotalValue > optimalValue) {
-//        		optimalValue = tempTotalValue;
-//        	}        	       	
-//        }
-//
-//        System.out.println(optimalValue);
-//        return new ArrayList<>();
-        int[][] subsets = generateSubsets(n);        
-    	optimalValue = 0;
-    	for(int i = 0; i < Math.pow(2, n); i++) {
-    		tempTotalValue = 0;
+        int optimalIndex = -1;
+        //Loop through every subset
+        for (int i = 0; i<Math.pow(2, n); i++) {
+        	tempTotalValue = 0;
         	tempTotalWeight = 0;
-        	for(int j = 0; j < n;j++) {      		    		
-        		if(subsets[i][j] == 1) {	
+        	//Loop for every index within the subset
+        	for(int j = 0; j < n;j++) {
+        		//If the current value of j is within the subset, add its
+        		//potential weight and value
+        		if((i & (int)(Math.pow(2, j))) > 0) {
             		tempTotalWeight += weights[j];
             		tempTotalValue += values[j];
-        		}
+            	}
         	}
+        	//if a new optimal value was found and its weight does not
+        	//exceed the bags capacity, make it the new optimal index
         	if(tempTotalWeight <= capacity && tempTotalValue > optimalValue) {
+        		optimalIndex = i;
         		optimalValue = tempTotalValue;
-        		optimalSubset = i;
-        	}
-    	}
-    	//Create List to Return
-    	List<Integer> theOptimalSubsetList = new ArrayList<>();
-    	//Populate List
-    	for(int i = 0; i < n; i++) {
-    		if(subsets[optimalSubset][i] == 1) {
-        		theOptimalSubsetList.add(i);	
+        	}        	       	
+        }
+        //Create List to Return
+        List<Integer> theOptimalSubsetList = new ArrayList<>();
+        //Populate List
+        for(int j = 0; j < n && optimalIndex >= 0; j++) {
+        	if((optimalIndex & (int)(Math.pow(2, j))) > 0) {
+        		theOptimalSubsetList.add(j);
     		}
-    	}
-    	//Return Results
+        }
     	return theOptimalSubsetList;
-    }
-    
-    private int[][] generateSubsets(int n) {
-    	int[][] subsets = new int[(int) Math.pow(2, n)][values.length];
-        int divider = 0;
-    	int totalForDivide = 0;
-    	double powerOfTwoToN = Math.pow(2, n);
-        boolean isOne = false;
-    	for(int i = 0; i < n; i++) {        	
-        	divider = (int) Math.pow(2, n-i-1);
-        	isOne = false;
-        	totalForDivide = 0;
-        	while(totalForDivide < powerOfTwoToN) {
-        		for(int j = totalForDivide; j < totalForDivide +divider;j++) {
-        			if(isOne) {
-        				subsets[j][i]=1;
-        			} else {
-        				subsets[j][i]=0;
-        			}
-        		}
-        		totalForDivide += divider;
-        		isOne = !isOne;
-        	}
-        } 	
-    	return subsets;
     }
 
 	@Override
