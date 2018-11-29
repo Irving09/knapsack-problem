@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import knapsack.parents.Knapsack;
 
@@ -25,14 +27,13 @@ public class CSVLogger {
 	 * for graph representation of the data.
 	 *
 	 * @param knapsack The Type of Approach that was taken to solve the knapsack problem.
-	 * @param value The value to log, in this case it is either capacity or the number of items
 	 */
-	public void logRuntime(Knapsack knapsack, int value) {
+	public void logRuntime(Knapsack knapsack) {
 		long startTime = System.nanoTime();
 		knapsack.solve();
 		long endTime = System.nanoTime();
 		long runtime = endTime - startTime;
-		writeToFileDifCol(value, runtime);
+		p.write("," + runtime);
 	}
 
 	/**
@@ -42,19 +43,18 @@ public class CSVLogger {
 	 * @param capacitySize The current size of the capacity W
 	 * @param constantFactorIsN true if the variable that is being changed for testing is the capacity, false otherwise.
 	 */
-	public void writeHeader(int nSize, int capacitySize, boolean constantFactorIsN) {
+	public void writeHeader(int nSize, int capacitySize, boolean constantFactorIsN, Knapsack[] algorithms) {
+		String csv = Arrays.stream(algorithms)
+				.map(knapsack -> knapsack.name() + " (ns)")
+				.collect(Collectors.joining(","));
+
 		StringBuilder sb = new StringBuilder();
 		// Create Heading for each Column
 		sb.append(constantFactorIsN ? "N " : "Capacity ");
 		sb.append("Size:");
 		sb.append(constantFactorIsN ? nSize : capacitySize);
 		sb.append("\n");
-		sb.append("Brute Force,, Bottom-Up,, Top-Down\n");
-		for (int i = 0; i < 3; i++) {
-			sb.append(constantFactorIsN ? "W," : "N,");
-			sb.append("Runtime,");
-		}
-		sb.append("\n");
+		sb.append((!constantFactorIsN ? nSize : capacitySize) + "," + csv + "\n");
 		p.write(sb.toString());
 	}
 	/**
@@ -94,20 +94,9 @@ public class CSVLogger {
 	public void writeNewLineToFile() {
 		p.write("\n");
 	}
-	/**
-	 * Writes the x (N or Capacity value) and y(The Runtime) information for the graph.
-	 * @param xValue
-	 * @param yValue
-	 */
-	private void writeToFileDifCol(int xValue, long yValue) {
 
-		StringBuilder sb = new StringBuilder();
-		// Write Data to each Row
-		sb.append(xValue);
-		sb.append(",");
-		sb.append(yValue);
-		sb.append(",");
-		p.write(sb.toString());
+	public void write(String any) {
+		p.write(any);
 	}
 
 }

@@ -75,4 +75,9 @@ public class DPBottomUp extends KnapsackDP {
 		return backtrack(dp);
 	}
 
+	@Override
+	public String name() {
+		return "bottom-up";
+	}
+
 }

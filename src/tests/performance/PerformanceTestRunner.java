@@ -14,6 +14,7 @@ import logger.CSVLogger;
 
 import java.io.IOException;
 import java.util.Comparator;
+import java.util.List;
 
 import static tests.performance.TestSetGenerator.testsWithConstantCapacity;
 import static tests.performance.TestSetGenerator.testsWithConstantItems;
@@ -31,46 +32,29 @@ public class PerformanceTestRunner {
     }
 
     public void run(Knapsack[] algorithms) throws IOException {
-        for (TestSet testSet : testsWithConstantCapacity()) {
+        runTestSet(testsWithConstantCapacity(), false, algorithms);
+        runTestSet(testsWithConstantItems(), true, algorithms);
+    }
+
+    public void runTestSet(List<TestSet> testSets, boolean constantFactorIsN, Knapsack[] algorithms) throws IOException {
+        for (TestSet testSet : testSets) {
             int itemSize = testSet.itemsSize();
             int capacity = testSet.capacity();
+
             String fullPath = logger.generateFileNameBy(itemSize, capacity);
             logger.openFile(fullPath);
-            logger.writeHeader(itemSize, capacity, false);
+            logger.writeHeader(itemSize, capacity, constantFactorIsN, algorithms);
 
             testSet.testCases().sort(Comparator.comparingInt(TestCase::n));
 
             for (TestCase testCase : testSet.testCases()) {
+                logger.write(testCase.n() + "");
                 for (Knapsack algorithm : algorithms) {
                     algorithm.weights(testCase.weights());
                     algorithm.values(testCase.values());
                     algorithm.capacity(testCase.capacity());
 
-                    logger.logRuntime(algorithm, testCase.n());
-                }
-
-                logger.writeNewLineToFile();
-            }
-
-            logger.closeFile();
-        }
-
-        for (TestSet testSet : testsWithConstantItems()) {
-            int itemSize = testSet.itemsSize();
-            int capacity = testSet.capacity();
-            String fullPath = logger.generateFileNameBy(itemSize, capacity);
-            logger.openFile(fullPath);
-            logger.writeHeader(itemSize, capacity, true);
-
-            testSet.testCases().sort(Comparator.comparingInt(TestCase::capacity));
-
-            for (TestCase testCase : testSet.testCases()) {
-                for (Knapsack algorithm : algorithms) {
-                    algorithm.weights(testCase.weights());
-                    algorithm.values(testCase.values());
-                    algorithm.capacity(testCase.capacity());
-
-                    logger.logRuntime(algorithm, testCase.capacity());
+                    logger.logRuntime(algorithm);
                 }
 
                 logger.writeNewLineToFile();

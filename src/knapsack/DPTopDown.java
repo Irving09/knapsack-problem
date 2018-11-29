@@ -80,4 +80,9 @@ public class DPTopDown extends KnapsackDP {
 		// fill in cache to prevent further recursions on same inputs
 		return cache[n][capacity] = Math.max(ignored, chosen);
 	}
+
+	@Override
+	public String name() {
+		return "top-down";
+	}
 }

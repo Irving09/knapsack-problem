@@ -115,4 +115,9 @@ public class BruteForce extends Knapsack {
         } 	
     	return subsets;
     }
+
+	@Override
+	public String name() {
+		return "brute-force";
+	}
 }

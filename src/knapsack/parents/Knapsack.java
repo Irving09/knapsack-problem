@@ -33,6 +33,8 @@ public abstract class Knapsack {
 
     public abstract List<Integer> solve();
 
+    public abstract String name();
+
     public int[] weights() {
         return this.weights;
     }
