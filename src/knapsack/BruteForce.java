@@ -49,7 +49,7 @@ public class BruteForce extends Knapsack {
         	for(int j = 0; j < n;j++) {
         		//If the current value of j is within the subset, add its
         		//potential weight and value
-        		if((i & (int)(Math.pow(2, j))) > 0) {
+        		if((i & 1<<j) > 0) {
             		tempTotalWeight += weights[j];
             		tempTotalValue += values[j];
             	}
@@ -65,7 +65,7 @@ public class BruteForce extends Knapsack {
         List<Integer> theOptimalSubsetList = new ArrayList<>();
         //Populate List
         for(int j = 0; j < n && optimalIndex >= 0; j++) {
-        	if((optimalIndex & (int)(Math.pow(2, j))) > 0) {
+        	if((optimalIndex & 1<<j) > 0) {
         		theOptimalSubsetList.add(j);
     		}
         }
