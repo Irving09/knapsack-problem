@@ -12,7 +12,6 @@ package tests.performance;
 import knapsack.parents.Knapsack;
 import logger.CSVLogger;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Comparator;
 
@@ -21,6 +20,7 @@ import static tests.performance.TestSetGenerator.testsWithConstantItems;
 
 /**
  * @author irving09 <innoirvinge@gmail.com>
+ * @author Joshua Meigs <joshua.meigs@gmail.com>
  */
 public class PerformanceTestRunner {
 

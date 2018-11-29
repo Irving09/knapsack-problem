@@ -80,7 +80,7 @@ public class CSVLogger {
 		boolean itemsSizeIsConstant = itemsSize > 0;
 		String prefix = itemsSizeIsConstant ? "n" : "capacity";
 		int value = itemsSizeIsConstant ? itemsSize : capacity;
-		return "./data/" + prefix + "_" + value;
+		return "./data/" + prefix + "_" + value + ".csv";
 	}
 	/**
 	 * Closes the file that was opened for output
