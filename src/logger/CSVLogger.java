@@ -54,7 +54,7 @@ public class CSVLogger {
 		sb.append("Size:");
 		sb.append(constantFactorIsN ? nSize : capacitySize);
 		sb.append("\n");
-		sb.append((!constantFactorIsN ? nSize : capacitySize) + "," + csv + "\n");
+		sb.append((!constantFactorIsN ? "N" : "W") + "," + csv + "\n");
 		p.write(sb.toString());
 	}
 	/**
