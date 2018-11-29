@@ -48,7 +48,7 @@ public class PerformanceTestRunner {
             testSet.testCases().sort(Comparator.comparingInt(TestCase::n));
 
             for (TestCase testCase : testSet.testCases()) {
-                logger.write(testCase.n() + "");
+                logger.write((constantFactorIsN ? testCase.capacity() : testCase.n()) + "");
                 for (Knapsack algorithm : algorithms) {
                     algorithm.weights(testCase.weights());
                     algorithm.values(testCase.values());
